@@ -31,13 +31,13 @@ class BMIViewModel : ViewModel() {
         if (height != null && weight != null){
             var meterHeight : Double = (height*0.3048);
             var ansBMI = weight/(meterHeight*meterHeight)
-            var ansInt : Int = ansBMI.toInt()
+            var ans = ansBMI.toString()
             uiState.value = uiState.value.copy(
-                calculate = ansInt.toString()
+                calculate = ans.take(5)
             )
         }else{
             uiState.value = uiState.value.copy(
-                calculate = "SOME PROBLEM"
+                calculate = "!!"
             )
         }
     }
