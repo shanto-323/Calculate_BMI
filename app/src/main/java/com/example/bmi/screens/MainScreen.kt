@@ -49,33 +49,54 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
         var text by remember {
             mutableStateOf(bmiViewModel.uiState.value.calculate)
         }
-        Box(
+        var bodyState by remember {
+            mutableStateOf(bmiViewModel.uiState.value.bodyState)
+        }
+        var color by remember {
+            mutableStateOf(bmiViewModel.uiState.value.color)
+        }
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .border(2.dp, Color.Black)
-                .padding(5.dp)
-        ){
-            Text(
-                text = text,
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 40.sp
-                ),
+                //.border(2.dp, Color.Black)
+        ) {
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                textAlign = TextAlign.End
-            )
-            Text(
-                text = "BMI = ",
-                style = TextStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 40.sp
-                ),
+                    .fillMaxWidth()
+                    .padding(5.dp)
+            ){
+                Text(
+                    text = text,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 40.sp
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    textAlign = TextAlign.End
+                )
+            }
+            Box(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                textAlign = TextAlign.Start
-            )
+                    .fillMaxWidth()
+                    .padding(5.dp)
+            ) {
+                Text(
+                    text = bodyState,
+                    color = color ,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    textAlign = TextAlign.End
+                )
+            }
         }
+
+
+
         Row (
             modifier = Modifier
                 .fillMaxWidth()
@@ -144,7 +165,7 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
         }
 
 
-        Spacer(modifier = Modifier.padding(40.dp))
+        Spacer(modifier = Modifier.padding(20.dp))
         Box(
             modifier = Modifier
                 .height(50.dp)
@@ -157,6 +178,8 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
                 onClick = {
                     bmiViewModel.calculate()
                     text = bmiViewModel.uiState.value.calculate
+                    bodyState = bmiViewModel.uiState.value.bodyState
+                    color = bmiViewModel.uiState.value.color
                 },
                 modifier = Modifier
                     .fillMaxSize()
@@ -166,6 +189,33 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
                     size = 20,
                     fontWeight = FontWeight.Bold,
                     color = Color.White
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.padding(3.dp))
+        Box(
+            modifier = Modifier
+                .height(50.dp)
+                .clip(RoundedCornerShape(10.dp))
+                .background(Color.Magenta),
+            contentAlignment = Alignment.Center
+
+        ){
+            TextButton(
+                onClick = {
+                    bmiViewModel.clean()
+                    text = bmiViewModel.uiState.value.calculate
+                    bodyState = bmiViewModel.uiState.value.bodyState
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                MySimpleText(
+                    label = "AC",
+                    size = 20,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
                 )
             }
         }
