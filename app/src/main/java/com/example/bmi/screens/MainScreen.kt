@@ -1,5 +1,6 @@
 package com.example.bmi.screens
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -23,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -58,7 +60,6 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                //.border(2.dp, Color.Black)
         ) {
             Box(
                 modifier = Modifier
@@ -96,6 +97,7 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
         }
 
 
+        Shape()
 
         Row (
             modifier = Modifier
@@ -229,4 +231,22 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
 @Composable
 private fun Preview() {
     BmiCalculator()
+}
+
+
+@Composable
+fun Shape() {
+    Canvas(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.White)
+            .padding(10.dp)
+    ) {
+        drawLine(
+            start = Offset(0f,0f),
+            end = Offset(size.width,0f),
+            color = Color.Black,
+            strokeWidth = 4f
+        )
+    }
 }

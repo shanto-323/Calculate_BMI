@@ -45,9 +45,6 @@ class BMIViewModel : ViewModel() {
                 calculate = "!!"
             )
         }
-
-
-
         if(body != 0.00) {
             if (body < 18.5) {
                 uiState.value = uiState.value.copy(
@@ -56,14 +53,14 @@ class BMIViewModel : ViewModel() {
                 uiState.value = uiState.value.copy(
                     color = Orange
                 )
-            } else if (body > 18.5 && body < 24.9) {
+            } else if (body in 18.5 .. 24.9) {
                 uiState.value = uiState.value.copy(
                     bodyState = "Normal"
                 )
                 uiState.value = uiState.value.copy(
                     color = Color.Green
                 )
-            } else if (body > 25 && body < 29.9) {
+            } else if (body in 25.0..29.9) {
                 uiState.value = uiState.value.copy(
                     bodyState = "OverWeight"
                 )
