@@ -1,10 +1,11 @@
 package com.example.bmi.model
 
 import android.util.Log
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
-import com.example.bmi.ui.theme.Orange
 
 class BMIViewModel : ViewModel() {
 
@@ -51,7 +52,7 @@ class BMIViewModel : ViewModel() {
                     bodyState = "UnderWeight"
                 )
                 uiState.value = uiState.value.copy(
-                    color = Orange
+                    color = Color(0xFFFF7000)
                 )
             } else if (body in 18.5 .. 24.9) {
                 uiState.value = uiState.value.copy(
@@ -65,7 +66,7 @@ class BMIViewModel : ViewModel() {
                     bodyState = "OverWeight"
                 )
                 uiState.value = uiState.value.copy(
-                    color = Orange
+                    color = Color(0xFFFF7000)
                 )
             } else {
                 uiState.value = uiState.value.copy(

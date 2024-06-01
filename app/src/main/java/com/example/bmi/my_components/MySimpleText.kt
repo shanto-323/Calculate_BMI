@@ -2,6 +2,7 @@ package com.example.bmi.my_components
 
 import android.util.Size
 import androidx.compose.foundation.clickable
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,7 +16,7 @@ fun MySimpleText(
     label:String,
     size: Int,
     fontWeight: FontWeight,
-    color:Color
+    color: Color = MaterialTheme.colorScheme.secondary
 ) {
     Text(
         text = label,
@@ -23,7 +24,6 @@ fun MySimpleText(
             fontSize = size.sp,
             fontWeight = fontWeight,
             color = color
-        ),
-        modifier = Modifier
+        )
     )
 }

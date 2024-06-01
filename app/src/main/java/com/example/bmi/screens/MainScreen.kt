@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -39,15 +40,19 @@ import com.example.bmi.my_components.MySimpleText
 import com.example.bmi.my_components.MyTextField
 
 @Composable
-fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
+fun BmiCalculator(
+    bmiViewModel : BMIViewModel
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Bottom
     ) {
+
+
         var text by remember {
             mutableStateOf(bmiViewModel.uiState.value.calculate)
         }
@@ -57,6 +62,7 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
         var color by remember {
             mutableStateOf(bmiViewModel.uiState.value.color)
         }
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -97,7 +103,9 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
         }
 
 
-        Shape()
+        Shape(
+            color = MaterialTheme.colorScheme.secondary
+        )
 
         Row (
             modifier = Modifier
@@ -108,24 +116,19 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
             Box(
                 modifier = Modifier
                     .padding(end = 5.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .weight(1.5f)
-                    .aspectRatio(4f)
                     .align(Alignment.CenterVertically)
-                    .background(Color.DarkGray),
+                    .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ){
                 MySimpleText(
-                    label = "HEIGHT  (feet)",
-                    size = 20,
+                    label = "HEIGHT :",
+                    size = 32,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
                 )
             }
             MyTextField(
                 mod = Modifier
                     .weight(1f),
-                color = Color.Black,
                 onTextSelected = {
                     bmiViewModel.onEvent(UIEvent.FirstNumberChanged(it))
                 }
@@ -142,24 +145,19 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
             Box(
                 modifier = Modifier
                     .padding(end = 5.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .weight(1.5f)
-                    .aspectRatio(4f)
                     .align(Alignment.CenterVertically)
-                    .background(Color.DarkGray),
+                    .background(MaterialTheme.colorScheme.primary),
                 contentAlignment = Alignment.Center
             ){
                 MySimpleText(
-                    label = "WEIGHT  (kg)",
-                    size = 20,
+                    label = "WEIGHT :",
+                    size = 32,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
                 )
             }
             MyTextField(
                 mod = Modifier
                     .weight(1f),
-                color = Color.Black,
                 onTextSelected = {
                     bmiViewModel.onEvent(UIEvent.SecondNumberChanged(it))
                 }
@@ -172,7 +170,7 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
             modifier = Modifier
                 .height(50.dp)
                 .clip(RoundedCornerShape(10.dp))
-                .background(Color.DarkGray),
+                .background(color = MaterialTheme.colorScheme.tertiary),
             contentAlignment = Alignment.Center
 
         ){
@@ -188,9 +186,8 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
             ) {
                 MySimpleText(
                     label = "CALCULATE",
-                    size = 20,
+                    size = 24,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
                 )
             }
         }
@@ -200,7 +197,7 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
             modifier = Modifier
                 .height(50.dp)
                 .clip(RoundedCornerShape(10.dp))
-                .background(Color.Magenta),
+                .background(color = MaterialTheme.colorScheme.error),
             contentAlignment = Alignment.Center
 
         ){
@@ -215,9 +212,8 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
             ) {
                 MySimpleText(
                     label = "AC",
-                    size = 20,
+                    size = 24,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
                 )
             }
         }
@@ -227,25 +223,19 @@ fun BmiCalculator(bmiViewModel: BMIViewModel = viewModel()) {
 }
 
 
-@Preview
 @Composable
-private fun Preview() {
-    BmiCalculator()
-}
-
-
-@Composable
-fun Shape() {
+fun Shape(
+    color: Color
+) {
     Canvas(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.White)
-            .padding(10.dp)
+            .padding(10.dp),
     ) {
         drawLine(
             start = Offset(0f,0f),
             end = Offset(size.width,0f),
-            color = Color.Black,
+            color = color,
             strokeWidth = 4f
         )
     }
