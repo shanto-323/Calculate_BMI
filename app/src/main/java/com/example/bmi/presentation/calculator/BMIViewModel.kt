@@ -1,17 +1,16 @@
-package com.example.bmi.model
+package com.example.bmi.presentation.calculator
 
-import android.util.Log
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import com.example.bmi.presentation.calculator.items.UIEvent
+import com.example.bmi.presentation.calculator.items.UIState
 
 class BMIViewModel : ViewModel() {
 
     var uiState = mutableStateOf(UIState())
 
-    fun onEvent(event:UIEvent){
+    fun onEvent(event: UIEvent){
         when(event){
             is UIEvent.FirstNumberChanged -> {
                 uiState.value = uiState.value.copy(

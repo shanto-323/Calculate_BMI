@@ -1,4 +1,4 @@
-package com.example.bmi.model
+package com.example.bmi.presentation.calculator.items
 
 sealed class UIEvent {
     data class FirstNumberChanged(var firstNumber:String) : UIEvent()

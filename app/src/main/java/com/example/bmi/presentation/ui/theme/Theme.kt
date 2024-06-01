@@ -1,4 +1,4 @@
-package com.example.bmi.ui.theme
+package com.example.bmi.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
