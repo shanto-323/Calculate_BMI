@@ -41,42 +41,45 @@ class BMIViewModel : ViewModel() {
             uiState.value = uiState.value.copy(
                 calculate = ans.take(4)
             )
+            if(body != 0.00) {
+                if (body < 18.5) {
+                    uiState.value = uiState.value.copy(
+                        bodyState = "UnderWeight"
+                    )
+                    uiState.value = uiState.value.copy(
+                        color = Color(0xFFFF7000)
+                    )
+                } else if (body in 18.5 .. 24.9) {
+                    uiState.value = uiState.value.copy(
+                        bodyState = "Normal"
+                    )
+                    uiState.value = uiState.value.copy(
+                        color = Color.Green
+                    )
+                } else if (body in 25.0..29.9) {
+                    uiState.value = uiState.value.copy(
+                        bodyState = "OverWeight"
+                    )
+                    uiState.value = uiState.value.copy(
+                        color = Color(0xFFFF7000)
+                    )
+                } else {
+                    uiState.value = uiState.value.copy(
+                        bodyState = "Obese"
+                    )
+                    uiState.value = uiState.value.copy(
+                        color = Color.Red
+                    )
+                }
+            }
         }else{
             uiState.value = uiState.value.copy(
                 calculate = "!!"
             )
         }
-        if(body != 0.00) {
-            if (body < 18.5) {
-                uiState.value = uiState.value.copy(
-                    bodyState = "UnderWeight"
-                )
-                uiState.value = uiState.value.copy(
-                    color = Color(0xFFFF7000)
-                )
-            } else if (body in 18.5 .. 24.9) {
-                uiState.value = uiState.value.copy(
-                    bodyState = "Normal"
-                )
-                uiState.value = uiState.value.copy(
-                    color = Color.Green
-                )
-            } else if (body in 25.0..29.9) {
-                uiState.value = uiState.value.copy(
-                    bodyState = "OverWeight"
-                )
-                uiState.value = uiState.value.copy(
-                    color = Color(0xFFFF7000)
-                )
-            } else {
-                uiState.value = uiState.value.copy(
-                    bodyState = "Obese"
-                )
-                uiState.value = uiState.value.copy(
-                    color = Color.Red
-                )
-            }
-        }
+
+
+
 
     }
 

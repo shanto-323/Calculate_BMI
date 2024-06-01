@@ -47,21 +47,10 @@ fun BmiCalculator(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(20.dp),
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Bottom
     ) {
-
-
-        var text by remember {
-            mutableStateOf(bmiViewModel.uiState.value.calculate)
-        }
-        var bodyState by remember {
-            mutableStateOf(bmiViewModel.uiState.value.bodyState)
-        }
-        var color by remember {
-            mutableStateOf(bmiViewModel.uiState.value.color)
-        }
 
         Column(
             modifier = Modifier
@@ -73,7 +62,7 @@ fun BmiCalculator(
                     .padding(5.dp)
             ){
                 Text(
-                    text = text,
+                    text = bmiViewModel.uiState.value.calculate,
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         fontSize = 40.sp
@@ -89,8 +78,8 @@ fun BmiCalculator(
                     .padding(5.dp)
             ) {
                 Text(
-                    text = bodyState,
-                    color = color ,
+                    text = bmiViewModel.uiState.value.bodyState,
+                    color = bmiViewModel.uiState.value.color ,
                     style = TextStyle(
                         fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
@@ -177,9 +166,6 @@ fun BmiCalculator(
             TextButton(
                 onClick = {
                     bmiViewModel.calculate()
-                    text = bmiViewModel.uiState.value.calculate
-                    bodyState = bmiViewModel.uiState.value.bodyState
-                    color = bmiViewModel.uiState.value.color
                 },
                 modifier = Modifier
                     .fillMaxSize()
@@ -204,8 +190,6 @@ fun BmiCalculator(
             TextButton(
                 onClick = {
                     bmiViewModel.clean()
-                    text = bmiViewModel.uiState.value.calculate
-                    bodyState = bmiViewModel.uiState.value.bodyState
                 },
                 modifier = Modifier
                     .fillMaxSize()
@@ -236,7 +220,7 @@ fun Shape(
             start = Offset(0f,0f),
             end = Offset(size.width,0f),
             color = color,
-            strokeWidth = 4f
+            strokeWidth = 10f
         )
     }
 }
