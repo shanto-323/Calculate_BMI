@@ -1,5 +1,6 @@
 package com.example.bmi.presentation.calculator
 
+import android.content.Context
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -31,10 +32,12 @@ import com.example.bmi.R
 import com.example.bmi.presentation.calculator.items.UIEvent
 import com.example.bmi.presentation.components.MySimpleText
 import com.example.bmi.presentation.components.MyTextField
+import com.example.bmi.presentation.components.dialog
 
 @Composable
 fun BmiCalculator(
-    bmiViewModel: BMIViewModel
+    bmiViewModel: BMIViewModel,
+    context: Context
 ) {
     Column(
         modifier = Modifier
@@ -70,6 +73,7 @@ fun BmiCalculator(
                     .fillMaxWidth()
                     .padding(5.dp)
             ) {
+
                 Text(
                     text = bmiViewModel.uiState.value.bodyState,
                     color = bmiViewModel.uiState.value.color,
@@ -161,6 +165,7 @@ fun BmiCalculator(
             TextButton(
                 onClick = {
                     bmiViewModel.calculate()
+                    dialog(context = context, text = bmiViewModel.uiState.value.bodyState)
                 },
                 modifier = Modifier
                     .fillMaxSize()
@@ -171,6 +176,7 @@ fun BmiCalculator(
                     fontWeight = FontWeight.Bold,
                 )
             }
+
         }
 
         Spacer(modifier = Modifier.padding(3.dp))
