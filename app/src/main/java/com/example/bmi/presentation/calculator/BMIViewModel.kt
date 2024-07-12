@@ -39,7 +39,7 @@ class BMIViewModel @Inject constructor(
 
         if (height != null && weight != null){
             uiState.value = uiState.value.copy(
-                calculate = calculate.calculate(height, weight).toString()
+                calculate = calculate.calculate(height, weight).toString().take(4)
             )
             uiState.value = uiState.value.copy(
                 bodyState = calculate.bodyState(calculate.calculate(height,weight))
