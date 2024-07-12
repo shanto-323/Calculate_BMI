@@ -28,16 +28,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.bmi.R
 import com.example.bmi.presentation.calculator.items.UIEvent
 import com.example.bmi.presentation.components.MySimpleText
 import com.example.bmi.presentation.components.MyTextField
-import com.example.bmi.presentation.components.dialog
 
 @Composable
 fun BmiCalculator(
-    bmiViewModel: BMIViewModel,
-    context: Context
+    bmiViewModel: BMIViewModel = hiltViewModel()
 ) {
     Column(
         modifier = Modifier
@@ -165,7 +164,6 @@ fun BmiCalculator(
             TextButton(
                 onClick = {
                     bmiViewModel.calculate()
-                    dialog(context = context, text = bmiViewModel.uiState.value.bodyState)
                 },
                 modifier = Modifier
                     .fillMaxSize()

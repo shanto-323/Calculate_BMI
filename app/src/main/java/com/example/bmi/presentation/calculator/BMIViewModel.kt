@@ -3,10 +3,16 @@ package com.example.bmi.presentation.calculator
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import com.example.bmi.presentation.calculator.items.Calculate
 import com.example.bmi.presentation.calculator.items.UIEvent
 import com.example.bmi.presentation.calculator.items.UIState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class BMIViewModel : ViewModel() {
+@HiltViewModel
+class BMIViewModel @Inject constructor(
+
+) : ViewModel() {
 
     var uiState = mutableStateOf(UIState())
 
@@ -29,57 +35,23 @@ class BMIViewModel : ViewModel() {
         var height = uiState.value.firstNumber.toDoubleOrNull()
         var weight = uiState.value.secondNumber.toDoubleOrNull()
 
-        var body:Double = 0.0
+        val calculate = Calculate()
 
         if (height != null && weight != null){
-            var meterHeight : Double = (height*0.3048);
-            var ansBMI : Double  = weight/(meterHeight*meterHeight)
-            body = ansBMI
-
-            var ans = ansBMI.toString()
             uiState.value = uiState.value.copy(
-                calculate = ans.take(4)
+                calculate = calculate.calculate(height, weight).toString()
             )
-            if(body != 0.00) {
-                if (body < 18.5) {
-                    uiState.value = uiState.value.copy(
-                        bodyState = "UnderWeight"
-                    )
-                    uiState.value = uiState.value.copy(
-                        color = Color(0xFFFF7000)
-                    )
-                } else if (body in 18.5 .. 24.9) {
-                    uiState.value = uiState.value.copy(
-                        bodyState = "Normal"
-                    )
-                    uiState.value = uiState.value.copy(
-                        color = Color.Green
-                    )
-                } else if (body in 25.0..29.9) {
-                    uiState.value = uiState.value.copy(
-                        bodyState = "OverWeight"
-                    )
-                    uiState.value = uiState.value.copy(
-                        color = Color(0xFFFF7000)
-                    )
-                } else {
-                    uiState.value = uiState.value.copy(
-                        bodyState = "Obese"
-                    )
-                    uiState.value = uiState.value.copy(
-                        color = Color.Red
-                    )
-                }
-            }
+            uiState.value = uiState.value.copy(
+                bodyState = calculate.bodyState(calculate.calculate(height,weight))
+            )
+            uiState.value = uiState.value.copy(
+                color = calculate.color(calculate.calculate(height,weight))
+            )
         }else{
             uiState.value = uiState.value.copy(
                 calculate = "!!"
             )
         }
-
-
-
-
     }
 
     fun clean(){
