@@ -14,10 +14,14 @@ fun NavGraph (
 ){
     NavHost(navController = navController , startDestination = Route.CALCULATE.route) {
         composable(Route.CALCULATE.route){
-            BmiCalculator()
+            BmiCalculator(
+                navigate = {navController.navigate(Route.DATA.route)}
+            )
         }
         composable(Route.DATA.route){
-            History()
+            History(
+                navigateBack = { navController.popBackStack() }
+            )
         }
     }
 }

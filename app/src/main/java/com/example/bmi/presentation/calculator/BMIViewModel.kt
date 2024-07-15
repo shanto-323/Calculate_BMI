@@ -3,11 +3,14 @@ package com.example.bmi.presentation.calculator
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.bmi.domain.model.HistoryModel
 import com.example.bmi.domain.repo.HistoryRepository
 import com.example.bmi.presentation.calculator.items.Calculate
 import com.example.bmi.presentation.calculator.items.UIEvent
 import com.example.bmi.presentation.calculator.items.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -53,6 +56,15 @@ class BMIViewModel @Inject constructor(
                 calculate = "!!"
             )
         }
+
+
+        val history = HistoryModel(
+            bmi = uiState.value.calculate,
+            bodyState = uiState.value.bodyState
+        )
+        viewModelScope.launch {
+            repository.upsertHistory(history)
+        }
     }
 
     fun clean(){
@@ -63,6 +75,8 @@ class BMIViewModel @Inject constructor(
             bodyState = ""
         )
     }
+
+    fun getAllData() = repository.getHistory()
 
 }
 

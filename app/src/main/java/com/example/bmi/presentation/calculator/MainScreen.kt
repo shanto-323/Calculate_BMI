@@ -36,7 +36,8 @@ import com.example.bmi.presentation.components.MyTextField
 
 @Composable
 fun BmiCalculator(
-    bmiViewModel: BMIViewModel = hiltViewModel()
+    bmiViewModel: BMIViewModel = hiltViewModel(),
+    navigate: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -200,7 +201,35 @@ fun BmiCalculator(
                 )
             }
         }
+
+
+
+        Spacer(modifier = Modifier.padding(20.dp))
+        Box(
+            modifier = Modifier
+                .height(50.dp)
+                .clip(RoundedCornerShape(10.dp))
+                .background(color = MaterialTheme.colorScheme.tertiary),
+            contentAlignment = Alignment.Center
+
+        ) {
+            TextButton(
+                onClick = {
+                    navigate()
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                MySimpleText(
+                    label = " SEE HISTORY",
+                    size = 24,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+
+        }
         Spacer(modifier = Modifier.padding(40.dp))
+
     }
 }
 

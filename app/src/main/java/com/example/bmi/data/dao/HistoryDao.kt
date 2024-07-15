@@ -2,6 +2,7 @@ package com.example.bmi.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
+import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Upsert
 import com.example.bmi.domain.model.HistoryModel
@@ -9,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HistoryDao {
-    @Query("SELECT * FROM HistoryModel")
+    @Query("SELECT * FROM history_model")
     fun getAll(): Flow<List<HistoryModel>>
 
     @Upsert

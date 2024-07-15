@@ -23,14 +23,16 @@ class AppModule {
     )= Room.databaseBuilder(
         context,
         HistoryDB::class.java,
-        "HistoryModel"
+        "history_model"
     ).build()
+
 
 
     @Provides
     fun provideHistoryDao(
         historyDB: HistoryDB
     ) = historyDB.historyDao
+
 
 
     @Provides
