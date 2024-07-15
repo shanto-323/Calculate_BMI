@@ -85,7 +85,4 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.dynamic.features.fragment)
     androidTestImplementation(libs.androidx.navigation.testing)
-
-
-    //implementation("com.example.annotations:annotation-library:1.0.0")
 }

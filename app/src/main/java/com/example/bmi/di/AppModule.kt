@@ -16,7 +16,6 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 class AppModule {
 
-
     @Provides
     fun provideHistoryDB(
         @ApplicationContext
