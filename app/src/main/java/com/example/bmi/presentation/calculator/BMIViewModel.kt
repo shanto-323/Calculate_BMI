@@ -3,6 +3,7 @@ package com.example.bmi.presentation.calculator
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import com.example.bmi.domain.repo.HistoryRepository
 import com.example.bmi.presentation.calculator.items.Calculate
 import com.example.bmi.presentation.calculator.items.UIEvent
 import com.example.bmi.presentation.calculator.items.UIState
@@ -11,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BMIViewModel @Inject constructor(
-
+    private val repository: HistoryRepository
 ) : ViewModel() {
 
     var uiState = mutableStateOf(UIState())
