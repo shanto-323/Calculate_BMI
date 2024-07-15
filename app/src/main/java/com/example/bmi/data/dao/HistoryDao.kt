@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HistoryDao {
-    @Query("SELECT * FROM history_model")
+    @Query("SELECT * FROM history_model ORDER by id DESC")
     fun getAll(): Flow<List<HistoryModel>>
 
     @Upsert
