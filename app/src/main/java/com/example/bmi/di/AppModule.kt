@@ -24,7 +24,10 @@ class AppModule {
         context,
         HistoryDB::class.java,
         "history_model"
-    ).build()
+    )
+        //.addMigrations(MigrationFrom)
+        .fallbackToDestructiveMigration()
+        .build()
 
 
 

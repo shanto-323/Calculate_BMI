@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.bmi.domain.model.HistoryModel
 import com.example.bmi.domain.repo.HistoryRepository
 import com.example.bmi.presentation.calculator.items.Calculate
+import com.example.bmi.presentation.calculator.items.DateAndTime
 import com.example.bmi.presentation.calculator.items.UIEvent
 import com.example.bmi.presentation.calculator.items.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +20,7 @@ class BMIViewModel @Inject constructor(
 ) : ViewModel() {
 
     var uiState = mutableStateOf(UIState())
+    var dateAndTime = DateAndTime()
 
     fun onEvent(event: UIEvent){
         when(event){
@@ -60,7 +62,9 @@ class BMIViewModel @Inject constructor(
 
         val history = HistoryModel(
             bmi = uiState.value.calculate,
-            bodyState = uiState.value.bodyState
+            bodyState = uiState.value.bodyState,
+            time = dateAndTime.getTime,
+            date =dateAndTime.getDate,
         )
         viewModelScope.launch {
             repository.upsertHistory(history)

@@ -108,8 +108,6 @@ fun MyScreen(
             Column(
                 modifier = Modifier.padding(35.dp, 8.dp)
             ) {
-
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -134,7 +132,10 @@ fun MyScreen(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        Text(text = "01/01/2024")
+                        Text(
+                            text = "${itemList[itemIndex].date} : ${itemList[itemIndex].time}",
+                            fontSize = 5.sp,
+                        )
                         Spacer(modifier = Modifier.padding(2.dp))
                         Text(text = "${itemList[itemIndex].bmi}")
 
