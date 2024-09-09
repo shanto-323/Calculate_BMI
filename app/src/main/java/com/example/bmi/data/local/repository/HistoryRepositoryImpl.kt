@@ -1,6 +1,6 @@
-package com.example.bmi.data.repository
+package com.example.bmi.data.local.repository
 
-import com.example.bmi.data.dao.HistoryDao
+import com.example.bmi.data.local.dao.HistoryDao
 import com.example.bmi.domain.model.HistoryModel
 import com.example.bmi.domain.repo.HistoryRepository
 import kotlinx.coroutines.flow.Flow

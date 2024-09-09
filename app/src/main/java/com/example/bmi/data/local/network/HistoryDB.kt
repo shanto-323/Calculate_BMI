@@ -1,11 +1,11 @@
-package com.example.bmi.data.network
+package com.example.bmi.data.local.network
 
 import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.bmi.data.dao.HistoryDao
+import com.example.bmi.data.local.dao.HistoryDao
 import com.example.bmi.domain.model.HistoryModel
 
 @Database(

@@ -2,9 +2,9 @@ package com.example.bmi.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.bmi.data.dao.HistoryDao
-import com.example.bmi.data.network.HistoryDB
-import com.example.bmi.data.repository.HistoryRepositoryImpl
+import com.example.bmi.data.local.dao.HistoryDao
+import com.example.bmi.data.local.network.HistoryDB
+import com.example.bmi.data.local.repository.HistoryRepositoryImpl
 import com.example.bmi.domain.repo.HistoryRepository
 import dagger.Module
 import dagger.Provides
@@ -25,7 +25,6 @@ class AppModule {
         HistoryDB::class.java,
         "history_model"
     )
-        //.addMigrations(MigrationFrom)
         .fallbackToDestructiveMigration()
         .build()
 
