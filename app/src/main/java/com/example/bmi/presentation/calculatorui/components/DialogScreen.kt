@@ -37,6 +37,7 @@ fun DialogScreen(
 ) {
   Dialog(
     onDismissRequest = openDialog
+
   ) {
     Column(
       modifier

@@ -44,7 +44,6 @@ fun BmiScreen(
 ) {
 
   val context = LocalContext.current
-
   var weight by rememberSaveable { mutableStateOf("0") }
   var height by rememberSaveable { mutableStateOf("0") }
   var text by rememberSaveable { mutableStateOf("") }
@@ -144,7 +143,11 @@ fun BmiScreen(
         .height(60.dp),
       onClick = {
         viewModel.onEvent(Event.Calculate)
-        showDialog = true
+        if(viewModel.state.result.toDouble() <= 5.00 || viewModel.state.result.toDouble() >= 40.00){
+          makeToast(context,"ADD VALID NUMBER")
+        }else {
+          showDialog = true
+        }
       }
     )
 
