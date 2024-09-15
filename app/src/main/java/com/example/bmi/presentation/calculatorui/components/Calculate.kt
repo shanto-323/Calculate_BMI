@@ -1,4 +1,4 @@
-package com.example.bmi.presentation.calculator.items
+package com.example.bmi.presentation.calculatorui.components
 
 import androidx.compose.ui.graphics.Color
 

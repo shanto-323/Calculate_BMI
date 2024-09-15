@@ -10,6 +10,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -20,7 +21,8 @@ private val DarkColorScheme = darkColorScheme(
     secondary = white,
     tertiary = orange,
     background = black,
-    error = red
+    error = red,
+    onBackground = Color.DarkGray
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -28,7 +30,8 @@ private val LightColorScheme = lightColorScheme(
     secondary = black,
     tertiary = orange,
     background = white,
-    error = red
+    error = red,
+    onBackground = Color.DarkGray
 )
 
 @Composable
@@ -51,7 +54,7 @@ fun BMITheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = colorScheme.onBackground.hashCode()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
