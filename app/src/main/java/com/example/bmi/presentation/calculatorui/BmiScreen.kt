@@ -1,5 +1,6 @@
 package com.example.bmi.presentation.calculatorui
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -39,7 +40,7 @@ import com.example.bmi.presentation.calculatorui.components.makeToast
 @Composable
 fun BmiScreen(
   modifier: Modifier = Modifier,
-  viewModel: BmiViewModel = BmiViewModel()
+  viewModel: BmiViewModel = hiltViewModel()
 ) {
 
   val context = LocalContext.current
@@ -73,13 +74,21 @@ fun BmiScreen(
     ) {
 
       if (text != "" && text.length <= 4) {
-        println(heightSelected)
+        Log.d("TAG", "BmiScreen: $heightSelected")
+        Log.d("TAG", "a height: ${viewModel.state.height}")
+        Log.d("TAG", "a weight: ${viewModel.state.weight}")
         if (heightSelected) {
           height = text
           viewModel.onEvent(Event.HeightChanged(height))
+//          Log.d("TAG", "height: ${viewModel.state.height}")
+//          Log.d("TAG", "v weight: ${viewModel.state.weight}")
+          Log.d("TAG", "weight: $weight")
         } else {
           weight = text
           viewModel.onEvent(Event.WeightChanged(weight))
+          Log.d("TAG", "height: $height")
+//          Log.d("TAG", "v height: ${viewModel.state.height}")
+//          Log.d("TAG", "weight: ${viewModel.state.weight}")
         }
       }
 

@@ -7,7 +7,7 @@ import com.example.bmi.presentation.calculatorui.BmiScreen
 import com.example.bmi.presentation.ui.theme.BMITheme
 import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

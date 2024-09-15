@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.example.bmi.presentation.calculatorui.components.Calculate
 import com.example.bmi.presentation.calculatorui.components.Event
 import com.example.bmi.presentation.calculatorui.components.State
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-
-class BmiViewModel:ViewModel() {
+@HiltViewModel
+class BmiViewModel @Inject constructor() :ViewModel () {
 
   var state by mutableStateOf(State())
     private set
